@@ -23,6 +23,10 @@ body{
     background-size : cover;
     opacity: 0.3;
 }
+.graph_image{
+    height : 1000px;
+    width : 100%;
+}
 .message{
     font-size : 1.4rem;
     font-weight: normal;

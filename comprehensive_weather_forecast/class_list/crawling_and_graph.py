@@ -15,8 +15,10 @@ import pymysql #파이썬에서 mysql을 다룰 수 있게 하는 라이브러�
 
 from datetime import datetime #sql에 데이터를 넣을 떄, 현재 날짜를 알아야 한다.
 
-import matplotlib.pyplot as plt #그래프를 그리기 위한 라이브러리
+#plt.switch_backend('')
 import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 
 import os
 now = datetime.now()
@@ -547,15 +549,15 @@ class Making_graph:
         db = pymysql.connect(host = 'localhost', port = 3306, user='root', passwd='pasword1357', db='blog_db', charset='utf8')
         db_cursor = db.cursor() # DB 접속 및 커서 가져오는 코드 / 한번 그래프를 그릴 때마다 DB커서를 닫기 때문에 시작할때 커서를 다시 만든다.
         
-        sql_accu = "select temp from weather_info where (date_info = \"" + now_date +"\") and (site_name = \"accu\") and (place_name = \"" + self.land_name + "\") order by time_info asc;"
-        sql_bbc = "select temp from weather_info where (date_info = \"" + now_date +"\") and (site_name = \"bbc\") and (place_name = \"" + self.land_name + "\") order by time_info asc;"
-        sql_kma = "select temp from weather_info where (date_info = \"" + now_date +"\") and (site_name = \"kma\") and (place_name = \"" + self.land_name + "\") order by time_info asc;"
-        sql_twc = "select temp from weather_info where (date_info = \"" + now_date +"\") and (site_name = \"twc\") and (place_name = \"" + self.land_name + "\") order by time_info asc;"
+        sql_accu = "select temp from weather_info where (date_info = \"" + now_date +"\") and (site_name = \"accu\") and (place_name = \"" + self.land_name + "\") group by time_info;"
+        sql_bbc = "select temp from weather_info where (date_info = \"" + now_date +"\") and (site_name = \"bbc\") and (place_name = \"" + self.land_name + "\") group by time_info;"
+        sql_kma = "select temp from weather_info where (date_info = \"" + now_date +"\") and (site_name = \"kma\") and (place_name = \"" + self.land_name + "\") group by time_info;"
+        sql_twc = "select temp from weather_info where (date_info = \"" + now_date +"\") and (site_name = \"twc\") and (place_name = \"" + self.land_name + "\") group by time_info;"
         #^ DB에서 다음날 예상기온을 크롤링 하는 SQL 명령문
-        sql_accu_precip = "select precip from weather_info where (date_info = \"" + now_date +"\") and (site_name = \"accu\") and (place_name = \"" + self.land_name + "\") order by time_info asc;"
-        sql_bbc_precip = "select precip from weather_info where (date_info = \"" + now_date +"\") and (site_name = \"bbc\") and (place_name = \"" + self.land_name + "\") order by time_info asc;"
-        sql_kma_precip = "select precip from weather_info where (date_info = \"" + now_date +"\") and (site_name = \"kma\") and (place_name = \"" + self.land_name + "\") order by time_info asc;"
-        sql_twc_precip = "select precip from weather_info where (date_info = \"" + now_date +"\") and (site_name = \"twc\") and (place_name = \"" + self.land_name + "\") order by time_info asc;"
+        sql_accu_precip = "select  precip from weather_info where (date_info = \"" + now_date +"\") and (site_name = \"accu\") and (place_name = \"" + self.land_name + "\") group by time_info;"
+        sql_bbc_precip = "select precip from weather_info where (date_info = \"" + now_date +"\") and (site_name = \"bbc\") and (place_name = \"" + self.land_name + "\") group by time_info;"
+        sql_kma_precip = "select precip from weather_info where (date_info = \"" + now_date +"\") and (site_name = \"kma\") and (place_name = \"" + self.land_name + "\") group by time_info;"
+        sql_twc_precip = "select precip from weather_info where (date_info = \"" + now_date +"\") and (site_name = \"twc\") and (place_name = \"" + self.land_name + "\") group by time_info;"
         #^ DB에서 다음날 예상강수확률을 크롤링하는 SQL 명령문
         accu_Seoul_temp = list()
         accu_Seoul_precip = list()
@@ -635,7 +637,7 @@ class Making_graph:
         plt.plot(x, bbc_Seoul_temp, color = "g" , label = "BBC Weather")
         plt.plot(x, twc_Seoul_temp, color = "b", label = "The Weatehr Channel")
         plt.plot(x, kma_Seoul_temp, color = "violet", label = "기상청")
-        plt.title('내일 예상 기온')
+        plt.title('내일 ' + self.land_name + ' 예상 기온')
         plt.legend()
 
         x2 = plt.subplot(2, 1, 2, sharex = x1)
@@ -645,13 +647,13 @@ class Making_graph:
         plt.plot(x, bbc_Seoul_precip, color = "g" , label = "BBC Weather")
         plt.plot(x, twc_Seoul_precip, color = "b", label = "The Weatehr Channel")
         plt.plot(x, kma_Seoul_precip, color = "violet", label = "기상청")
-        plt.title('내일 예상 강수/ 강설확률')
+        plt.title('내일 '+ self.land_name + ' 예상 강수/ 강설확률')
         plt.legend()
         plt.tight_layout()
 
         #plt.show()
         BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        path_of_png = BASE_DIR + '/comprehensive_weather_forecast/static/chart.png'
+        path_of_png = BASE_DIR + '\\static\\chart.png'
         plt.savefig(path_of_png)
         print("폴더에 그래프 저장 완료")
         

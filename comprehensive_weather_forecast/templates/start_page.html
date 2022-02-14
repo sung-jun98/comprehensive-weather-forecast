@@ -28,11 +28,16 @@
         <div class="message">
         </div>
         <div class="input_container">
-            <form action="select_from_db" method="POST">
+            <form action="/select" method="POST">
                 <input id="input_style1" type="text" name="land_name" placeholder="거주지명을 입력해주세요."/>
                 <button type="submit" id="button_style2">검색</button>
             </form>
         </div>
     </section>
+    {% if graph_file != null %}
+    <div class="graph_image">
+        <img src = "{{ url_for('select', filename=graph_file)}}"></img>
+    </div>
+    {% endif %}
 </body>
 </html>
