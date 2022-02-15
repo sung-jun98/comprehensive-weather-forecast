@@ -1,43 +1,165 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0" >
-    <meta name="description" content="해외 기상예보 크롤링 사이트">
-    <meta name="keywords" content="날씨, 아큐웨더, accuweather, 기상청, 날씨, 외국기상청, The Weather Channel, BBC Weather">
-<!--fabicon 설정-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Blog Template · Bootstrap v5.1</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/blog/">
+    <!--fabicon 설정-->
     <link rel="icon" href=https://cdn-icons-png.flaticon.com/128/128/128972.png>
     <link rel="apple-touch-icon" href=https://cdn-icons-png.flaticon.com/128/128/128972.png />
 
-    <title>더 정확한 날씨</title>
 
-<!--css 리셋, 글씨체 설정, stylesheet link-->
-    <link rel="nomalize.css" href="css/nomalize.css" >
-    <link href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="/static/style.css">
-</head>
-<body>
-    <header>
-        <div class="inner">
+    <!-- Bootstrap core CSS -->
+    <link href="../static/bootstrap.min.css" rel="stylesheet">
 
-        </div>
-    </header>
-<!--메인 이미지 부분-->
-    <section class="main_image">
-        <div class="message">
-        </div>
-        <div class="input_container">
-            <form action="/select" method="POST">
-                <input id="input_style1" type="text" name="land_name" placeholder="거주지명을 입력해주세요."/>
-                <button type="submit" id="button_style2">검색</button>
-            </form>
-        </div>
-    </section>
-    {% if graph_file != null %}
-    <div class="graph_image">
-        <img src = "{{ url_for('select', filename=graph_file)}}"></img>
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {    
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="../static/blog.css" rel="stylesheet">
+  </head>
+  <body>
+    
+<div class="container">
+  <header class="blog-header py-3">
+    <div class="row flex-nowrap justify-content-between align-items-center">
+      <div class="col-4 pt-1">
+        <a class="link-secondary" href="#"></a>
+      </div>
+      <div class="col-4 text-center">
+        <a class="blog-header-logo text-dark" href="#">Compre-weather forecast</a>
+      </div>
+      <div class="col-4 d-flex justify-content-end align-items-center">
+        
+
+      </div>
     </div>
-    {% endif %}
-</body>
+  </header>
+
+  
+</div>
+
+<main class="container">
+  <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+    <div class="col-md-6 px-0">
+      <h1 class="display-4 fst-italic">해외 기상예보 통합 페이지<br></h1>
+      <div class="input_container">
+        <form action="/select" method="POST">
+            <input class="form-control col" list="datalistOptions" id="exampleDataList" name="land_name" placeholder="거주지명을 입력해주세요.">
+              <datalist id="datalistOptions">
+              <option value="서울">
+              <option value="부산">
+              <option value="대구">
+              <option value="대전">
+              <option value="광주">
+              <option value="수원">
+              <option value="울산">
+              <option value="청주">
+              <option value="제주">
+              <option value="춘천">
+              <option value="속초">
+              <option value="김포국제공항">
+              <option value="포항">
+              <option value="김해">
+              <option value="진주">
+              <option value="목포">
+              <option value="군산">
+              <option value="원주">
+              <option value="강릉">
+              </datalist>
+            <button type="submit" class="btn btn-primary" >검색</button>
+        </form>
+    </div>
+    </div>
+  </div>
+  <div class="row g-5">
+    <div class="col-md-8">
+      {% if graph_file == null %}
+      <article class="blog-post">
+       
+        <h2>기상청 </h2>
+        
+        <p><a href="https://www.weather.go.kr/w/index.do">기상청</a>(氣象廳, Korea Meteorological Administration, 약칭: KMA)은 기상에 관한 사무를 관장하는 대한민국의 중앙행정기관이다. 1990년 12월 27일 중앙기상대를 개편하여 발족하였으며, 서울특별시 동작구 여의대방로16길 61에 위치하고 있다. </p>
+        
+        <h2>Accuweather </h2>
+        <p><a href="https://www.accuweather.com/ko/kr/south-korea-weather">AccuWeather Inc.</a> 는 전 세계에 상용 기상 예보 서비스 를 제공하는 미국 미디어 회사이다.<br>
+
+          AccuWeather는 1962년 당시 Pennsylvania State University 대학원생이던 Joel N. Myers가 기상학 석사 학위를 취득하면서 설립되었다.<br>
+    
+          AccuWeather는 펜실베니아 주립 대학 바로 외곽의 퍼거슨 타운십 에 본사가 있으며 맨해튼 의 7 세계 무역 센터 와 캔자스 의 위치타 및 오클라호마의 오클라호마 시티 에 사무실이 있다.<br> 국제적으로 AccuWeather는 몬트리올 , 도쿄 , 베이징 , 서울 및 뭄바이에도 사무실을 두고 있다 .</p>
+       
+        <h2>BBC Weather </h2>
+        <p><a href="https://www.bbc.com/weather">BBC Weather</a>는 MeteoGroup과 함께 BBC 전역에서 일기 예보를 준비하고 방송하는 일을 담당합니다.<br>
+           1922년에 최초의 일기 예보를 방송했고 1936년까지 TV 예보에서 기상 지도의 사용을 개척했습니다.<br>
+            BBC 날씨 앱은 2013년에 출시되었으며 현재 영국에서 가장 인기 있는 날씨 앱 중 하나입니다</p>
+
+        <h2>The Weather Channel </h2>
+        <p><a href="https://weather.com/ko-KR/weather/today/l/KSXX0037:1:KS?Goto=Redirected">Weather Channel ( TWC )</a>은 Allen Media Group 의 자회사인 Weather Group, LLC가 소유한 미국 유료 텔레비전 채널 입니다. [2] [3] 채널의 본부는 조지아주 애틀랜타에 있다.<br>
+           1982년 5월 2일에 시작된 이 채널은 일기예보 , 날씨 관련 뉴스 및 분석, 날씨 관련 다큐멘터리 및 엔터테인먼트 프로그램을 방송하며, 현재 애플 아이폰과 날씨 제휴를 맺어, 기본 날씨 앱의 정보를 제공한다.. </p>
+      </article>
+
+      
+      {% else %}
+      <div class="graph_image">
+        <img src = "/static/chart.png"></img>
+     </div>
+      {% endif %}
+    </div>
+
+    <div class="col-md-4">
+      <div class="position-sticky" style="top: 2rem;">
+        <div class="p-4 mb-3 bg-light rounded">
+          <h4 class="fst-italic">About</h4>
+          <p class="mb-0">세계기상기구(WMO)의 통계에 따르면, 한국 기상청의 정확도 순위는 11개국중 9위로, 거의 꼴찌 수준입니다. <br>
+            이로 인해 장마철이나 겨울철 눈/비를 대비하기 위해서 해외 기상예보 서비스를 참고하는 '날씨 망명족'들이 늘어나고 있습니다.<br>
+            해당 사이트는 여러 해외 기상예보 서비스의 예보를 하나의 그래프로 모아 보여줍니다.<br>
+            (단, BBC Weather에서 예측하는 한국지역 18군데만 해당 사이트는 지원합니다.</p>
+        </div>
+
+      
+
+        <div class="p-4">
+          <h4 class="fst-italic">Elsewhere</h4>
+          <ol class="list-unstyled">
+            <li><a href="https://github.com/sung-jun98">GitHub</a></li>
+            <li><a href="https://velog.io/@tjdwns2243">velog</a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="blog-footer">
+  <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+  <p>
+    <a href="#">Back to top</a>
+  </p>
+</footer>
+
+
+    
+  </body>
 </html>
